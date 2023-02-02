@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name ="Regression Test"  configfailurepolicy="continue">
+    <listeners>
+        <listener class-name="RegressionTest.Listeners"/>
+    </listeners>
+    <test name = "Release Home page test">
+        <classes>
+            <class name = "RegressionTest.HomePageTest"/>
+        </classes>
+    </test>
+    <test name = "Release PLP page tes">
+        <classes>
+            <class name = "RegressionTest.PLPPageTest"/>
+        </classes>
+    </test>
+    <test name = "Release PDP page tes">
+        <classes>
+            <class name = "RegressionTest.PDPageTest"/>
+        </classes>
+    </test>
+    <test name = "Release Mini Cart page tes">
+        <classes>
+            <class name = "RegressionTest.MiniCartTest"/>
+        </classes>
+    </test>
+    <test name = "Release My Account page tes">
+        <classes>
+            <class name = "RegressionTest.MyAccountPagesTest"/>
+        </classes>
+    </test>
+
+</suite>

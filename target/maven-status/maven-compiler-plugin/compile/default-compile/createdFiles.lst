@@ -1,0 +1,8 @@
+org\rovshen\PageElements.class
+org\rovshen\MiniCart.class
+org\rovshen\ProductListingPage.class
+org\rovshen\MyAccountPages.class
+org\rovshen\ProductDPage.class
+resource\base.class
+org\rovshen\HomePage.class
+resource\ExtentReporterNG.class
