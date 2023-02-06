@@ -1,6 +1,7 @@
 package RegressionTest;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.v104.network.Network;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
@@ -9,6 +10,8 @@ import pageObjects.*;
 import resource.base;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
+import java.util.Optional;
 
 @Listeners(RegressionTest.Listeners.class)
 public class MyAccountPagesTest extends base {
@@ -36,6 +39,13 @@ public class MyAccountPagesTest extends base {
         myAccountPages = new MyAccountPages(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         devTools = ((ChromeDriver)driver).getDevTools();
+
+        //DevTools devTools = ((ChromeDriver)driver).getDevTools();
+        //devTools.createSession();
+        //devTools.send(Network.enable(java.util.Optional.empty(),
+        //        java.util.Optional.empty(), Optional.empty()));
+        //devTools.send(Network.setBlockedURLs(List.of("https://tag.wknd.ai/4949/i.js", "https://tag.wknd.ai/4951/i.js")));
+
         driver.get(currentURL);
         Thread.sleep(2000);
     }

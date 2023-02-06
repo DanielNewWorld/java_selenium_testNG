@@ -53,7 +53,7 @@ public class HomePageTest extends base {
     }
 
     //*********************************************************** HOME PAGE ******************
-    // 2. Verifying SWAG With Valid ZIPCODE In - assert ок
+    // Verifying SWAG With Valid ZIPCODE - assert ок
     @Test(priority = 1, retryAnalyzer = Retry.class)
     public void verifySwagWithValidInputInHomePage() throws InterruptedException {
         homePage.submitSwag(properties.getProperty("swagZipcode"), 2);
@@ -62,7 +62,7 @@ public class HomePageTest extends base {
         Assert.assertTrue(pageElements.getSwagResultTxt().getText().contains(properties.getProperty("swagZipcode")));
     }
 
-    // 4. Verify user should be abel to submit SWAG with CANADA zipcode on Home page - assert ok
+    // Verify user should be abel to submit SWAG with CANADA zipcode on Home page - assert ok
     @Test(priority = 2, retryAnalyzer = Retry.class)
     public void verifySubmittingSwagWithCanadianZipcode() throws InterruptedException{
         homePage.submitSwag(properties.getProperty("canadianZipcode"), 1);
@@ -72,7 +72,7 @@ public class HomePageTest extends base {
         Assert.assertTrue(pageElements.getSwagResultTxt().getText().contains(properties.getProperty("canadianZipcode")));
     }
 
-    // 5. Verify User should be able to Update Date in Calendar after SWAG - assert ок
+    // Verify User should be able to Update Date in Calendar after SWAG - assert ок
     @Test(priority = 3, retryAnalyzer = Retry.class)
     public void verifyUserCanUpdateDateInCalendarAfterSwag() throws InterruptedException {
         homePage.updateDateInCalendarAfterSWAG(properties.getProperty("swagZipcode"), 1);// This date index will Update date after SWAG already submitted
@@ -134,7 +134,7 @@ public class HomePageTest extends base {
         Assert.assertEquals(futureDate, pageElements.getDateFieldInSWAG().getAttribute("value"));
     }
 
-    // 3. Verify Updating date manually with invalid input in Date field after SWAG in HOME PAGE - assert ок
+    // Verify Updating date manually with invalid input in Date field after SWAG in HOME PAGE - assert ок
     @Test(priority = 8, retryAnalyzer = Retry.class)
     public void userEnteringInvalidDateManuallyInSWAG(){
         String invalidDate = "00/00/0000";
@@ -154,7 +154,7 @@ public class HomePageTest extends base {
         Assert.assertTrue(pageElements.getSwagResultTxt().getText().contains(properties.getProperty("swagZipcode")));
     }
 
-    // 3. Verify User entering INVALID ZIPCODE should display error message in zip code field - assert ok
+    // Verify User entering INVALID ZIPCODE should display error message in zip code field - assert ok
     @Test(priority = 10, retryAnalyzer = Retry.class)
     public void verifyInvalidZipcodeErrorMessage(){
         homePage.verifyInvalidZipcodeErrorMessage("*****"); // verifying error message when SWAG submitted with different characters
@@ -243,14 +243,14 @@ public class HomePageTest extends base {
         Assert.assertTrue(pageElements.getSearchResults().getText().contains("No results found"));
     }
 
-    // 6. Verify Clicking on CTA from the banner navigates the user to the right page - assert ok
+    // Verify Clicking on CTA from the banner navigates the user to the right page - assert ok
     @Test(priority = 16, retryAnalyzer = Retry.class)
     public void CTAs_from_banners() throws IOException {
         homePage.verifyCTAs_from_banners();
         System.out.println("Test case = With all Banner CTAs in Home page" );
     }
 
-    // 7. Verify the user can Select a Product from the Carousel in HOME PAGE - assert ok
+    // Verify the user can Select a Product from the Carousel in HOME PAGE - assert ok
     @Test(priority = 17, retryAnalyzer = Retry.class)
     public void verifyUserCanSelectProductFromCarousel(){
         homePage.selectProductFromCarousel(0); // Selecting Product From Carousel by Index
@@ -259,21 +259,21 @@ public class HomePageTest extends base {
         System.out.println("Test case current ZipCode = "+ pageElements.getProductTitlePDP().getText());
     }
 
-    // 8 - Verify the user can Select a Product from the Category - assert ok
+    //Verify the user can Select a Product from the Category - assert ok
     @Test(priority = 18, retryAnalyzer = Retry.class)
     public void VerifyHomePageCategory() throws InterruptedException {
         homePage.checkHomeCategoryLinks(); // Checking all the Category links in Home page
         System.out.println("Test case" ); // We are using the Assertion with in the method
     }
 
-    // 9 - Verify top Navigation menu items - assert ok
+    //Verify top Navigation menu items - assert ok
     @Test(priority = 19)
     public void verifyTheHeaderSection() throws InterruptedException{
         homePage.verifyActiveHeaderSection(0);//1st one Assertion included
         System.out.println("Test case" );//Working
     }
 
-    // 10 - Verify footer Navigation menu items - assert ok
+    //Verify footer Navigation menu items - assert ok
     @Test(priority = 20, retryAnalyzer = Retry.class)
     public void verifyTheFooterSection() throws InterruptedException{
         homePage.verifyTheFooterSection();

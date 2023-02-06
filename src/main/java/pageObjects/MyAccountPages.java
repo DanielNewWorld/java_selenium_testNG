@@ -20,9 +20,10 @@ public class MyAccountPages {
         Thread.sleep(2000);
         pageElementsAccount1.getFtdPlusAndSignIn().get(pageElementsAccount1.getFtdPlusAndSignIn().size() - 1).click();
         wait.until(ExpectedConditions.visibilityOf(pageElementsAccount1.getEmailSignIn()));
-        pageElementsAccount1.getEmailSignIn().sendKeys(email);// Send Email in field
 
+        pageElementsAccount1.getEmailSignIn().sendKeys(email);// Send Email in field
         wait.until(ExpectedConditions.textToBePresentInElementValue(pageElementsAccount1.getEmailSignIn(), email));
+
         pageElementsAccount1.getPasswordSignIn().sendKeys(password);// Send Password in field
         wait.until(ExpectedConditions.textToBePresentInElementValue(pageElementsAccount1.getPasswordSignIn(), password));
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(pageElementsAccount1.getRecaptchaIframe()));
@@ -33,10 +34,12 @@ public class MyAccountPages {
         } catch (Exception e) {
             jseAccountPage.executeScript("arguments[0].click();", pageElementsAccount1.getRecaptchaUnCheckedBox());
         }
-        wait.until(ExpectedConditions.visibilityOf(pageElementsAccount1.getRecaptchaCheckedBox()));
-        Thread.sleep(3000);
-        pageElementsAccount1.getSignInCTA().sendKeys(Keys.ENTER);// Click Sign in button
-        actions1.sendKeys(Keys.TAB).build().perform();
-        actions1.sendKeys(Keys.ENTER).build().perform();
+        //Thread.sleep(5000);
+        //wait.until(ExpectedConditions.visibilityOf(pageElementsAccount1.getRecaptchaCheckedBox()));
+        wait.until(ExpectedConditions.elementToBeClickable(pageElementsAccount1.getSignInCTA()));
+        //pageElementsAccount1.getSignInCTA().sendKeys(Keys.ENTER);// Click Sign in button
+        pageElementsAccount1.getSignInCTA().click();// Click Sign in button
+        //actions1.sendKeys(Keys.TAB).build().perform();
+        //actions1.sendKeys(Keys.ENTER).build().perform();
     }
 }

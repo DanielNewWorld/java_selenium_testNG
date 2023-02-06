@@ -83,13 +83,13 @@ public class PageElements {
     By miniCartUpdateSuccessMsg = By.xpath("//div[contains(@class,'alert_success') or contains(@class,'addToCartHeader')]");
 
     //************************************** MANAGE ACCOUNT PAGES **********************************
-    By ftdPlusAndSignInFromHeader = By.xpath("//span[contains(@aria-label, 'Sign in') and @role='button']");
+    By ftdPlusAndSignInFromHeader = By.xpath("//span[contains(@aria-label, 'Sign in') and @role='button']"); //ok
     By emailSigIn = By.xpath("//input[@id = 'username']"); //ok
-    By passwordSignIn = By.xpath("//input[@id = 'password']");
+    By passwordSignIn = By.xpath("//input[@id = 'password']"); //ok
     By recaptchaIframe = By.xpath("//iframe[@title='reCAPTCHA']");
-    By recaptchaUnCheckedBox = By.xpath("//span[contains(@class, 'recaptcha-checkbox') and @role='checkbox' and @aria-checked='false']");
-    By recaptchaCheckedBox = By.xpath("//span[contains(@class, 'recaptcha-checkbox') and @role='checkbox' and @aria-checked='true']");
-    By signInIntoAccountCTA = By.xpath("//button[contains(@class,'button_btn-primary') and @type='submit']");
+    By recaptchaUnCheckedBox = By.xpath("//span[contains(@class, 'recaptcha-checkbox') and @role='checkbox' and @aria-checked='false']"); //ok
+    By recaptchaCheckedBox = By.xpath("//span[contains(@class, 'recaptcha-checkbox') and @role='checkbox' and @aria-checked='true']"); //ok
+    By signInIntoAccountCTA = By.xpath("//button[contains(@class,'button_btn-primary') and @type='submit']"); //ok
 
     public List<WebElement> getViewDetailsRecommendation(){ return driver.findElements(viewDetailsRecommendationCTA); }
     public List<WebElement> getRecommendationProducts(){ return driver.findElements(recommendationModelProducts); }

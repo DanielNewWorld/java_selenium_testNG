@@ -44,7 +44,8 @@ public class MiniCartTest extends base {
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         DevTools devTools = ((ChromeDriver)driver).getDevTools();
         devTools.createSession();
-        devTools.send(Network.enable(java.util.Optional.empty(), java.util.Optional.empty(), Optional.empty()));
+        devTools.send(Network.enable(java.util.Optional.empty(),
+                java.util.Optional.empty(), Optional.empty()));
         devTools.send(Network.setBlockedURLs(List.of("https://tag.wknd.ai/4949/i.js", "https://tag.wknd.ai/4951/i.js")));
         driver.get(currentURL);
         Thread.sleep(2000);
