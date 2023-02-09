@@ -213,7 +213,7 @@ public class PLPPageTest extends base {
         Thread.sleep(2000);
     }
 
-    //Verify Filters using Color before SWAG - assert ok
+    //Verify Filters using Color before SWAG
     @Test(priority = 16, retryAnalyzer = Retry.class)
     public void verifyFilterColorBeforeSWAG() throws InterruptedException{
         homePage.plpIndexSelection(0, 1);// Selecting PLP by index
@@ -466,6 +466,21 @@ public class PLPPageTest extends base {
     @Test(priority = 38, retryAnalyzer = Retry.class)
     public void verifyPLPtoPLP(){
 
+    }
+
+    // Verify Search Results with invalid input From HOME PAGE after SWAG - assert ok
+    @Test(priority = 39, retryAnalyzer = Retry.class)
+    public void verifySearchWithInvalidInput() throws InterruptedException {
+        homePage.submitSwag(properties.getProperty("swagZipcode"), 2);
+        wait.until(ExpectedConditions.elementToBeClickable(pageElements.getMainLogo()));
+        actions.moveToElement(pageElements.getMainLogo()).build().perform();
+        pageElements.getMainLogo().click();
+        homePage.searchForInput(properties.getProperty("invalidSearchInput"));
+        Thread.sleep(1000);
+        wait.until(ExpectedConditions.presenceOfElementLocated(pageElements.searchResultsText));
+        System.out.println("Test case = Invalid input in search - "+ pageElements.getSearchResults().getText());
+        Assert.assertTrue(pageElements.getSearchResults().getText().contains(properties.getProperty("invalidSearchInput")));
+        Assert.assertTrue(pageElements.getSearchResults().getText().contains("No results found"));
     }
 
     @AfterMethod

@@ -305,6 +305,17 @@ public class HomePageTest extends base {
         Assert.assertTrue(pageElements.getInvalidInputErrorInSWAG().getText().contains("Enter a valid"));
     }
 
+    //Verify the user is able to select a product the HomePage after SWAG - assert ok
+    @Test(priority = 24, retryAnalyzer = Retry.class)
+    public void verifySelectProductFromCarouselAfterSWAG() throws InterruptedException{
+        homePage.submitSwagWithoutEnteringDate(properties.getProperty("swagZipcode"));
+        Thread.sleep(4000);
+        homePage.selectProductFromCarousel(0); // Selecting Product From Carousel by Index
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        Assert.assertEquals(homePage.selectedCarousel, pageElements.getProductTitlePDP().getText());// compare the title
+        System.out.println("Test case current ZipCode = "+ pageElements.getProductTitlePDP().getText());
+    }
+
     @AfterMethod
     public void afterTestCase() throws InterruptedException {
         Thread.sleep(1000);
