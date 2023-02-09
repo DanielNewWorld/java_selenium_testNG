@@ -1,4 +1,5 @@
 package RegressionTest;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
@@ -176,7 +177,7 @@ public class PLPPageTest extends base {
         System.out.println("Test case = Test case Checking All Products availability in PLP after SWAG + Pagination");
     }
 
-    //Verify Filters using Price - assert ok
+    //Verify Filters using Price before SWAG - assert ok
     @Test(priority = 12, retryAnalyzer = Retry.class)
     public void verifyFilterPriceBeforeSWAG() throws InterruptedException{
         homePage.plpIndexSelection(0, 1);// Selecting PLP by index
@@ -185,7 +186,7 @@ public class PLPPageTest extends base {
         Thread.sleep(2000);
     }
 
-    //Verify Filters using Delivery Type - assert ok
+    //Verify Filters using Delivery Type before SWAG - assert ok
     @Test(priority = 13, retryAnalyzer = Retry.class)
     public void verifyFilterDeliveryBeforeSWAG() throws InterruptedException{
         homePage.plpIndexSelection(0, 1);// Selecting PLP by index
@@ -194,7 +195,7 @@ public class PLPPageTest extends base {
         Thread.sleep(2000);
     }
 
-    //Verify Filters using Occasion - assert ok
+    //Verify Filters using Occasion before SWAG - assert ok
     @Test(priority = 14, retryAnalyzer = Retry.class)
     public void verifyFilterOccasionBeforeSWAG() throws InterruptedException{
         homePage.plpIndexSelection(0, 1);// Selecting PLP by index
@@ -203,7 +204,7 @@ public class PLPPageTest extends base {
         Thread.sleep(2000);
     }
 
-    //Verify Filters using Flower Type - assert ok
+    //Verify Filters using Flower Type before SWAG - assert ok
     @Test(priority = 15, retryAnalyzer = Retry.class)
     public void verifyFilterFlowerBeforeSWAG() throws InterruptedException{
         homePage.plpIndexSelection(0, 1);// Selecting PLP by index
@@ -212,7 +213,7 @@ public class PLPPageTest extends base {
         Thread.sleep(2000);
     }
 
-    //Verify Filters using Color - assert ok
+    //Verify Filters using Color before SWAG - assert ok
     @Test(priority = 16, retryAnalyzer = Retry.class)
     public void verifyFilterColorBeforeSWAG() throws InterruptedException{
         homePage.plpIndexSelection(0, 1);// Selecting PLP by index
@@ -221,7 +222,7 @@ public class PLPPageTest extends base {
         Thread.sleep(2000);
     }
 
-    //Verify Filters using Gift Type - assert ok
+    //Verify Filters using Gift Type before SWAG - assert ok
     @Test(priority = 17, retryAnalyzer = Retry.class)
     public void verifyFilterGiftTypeBeforeSWAG() throws InterruptedException{
         homePage.plpIndexSelection(0, 1);// Selecting PLP by index
@@ -230,7 +231,7 @@ public class PLPPageTest extends base {
         Thread.sleep(2000);
     }
 
-    //Verify Reset Filters - assert ok
+    //Verify Reset Filters before SWAG- assert ok
     @Test(priority = 18, retryAnalyzer = Retry.class)
     public void verifyFilterResetBeforeSWAG() throws InterruptedException{
         homePage.plpIndexSelection(0, 1);// Selecting PLP by index
@@ -436,6 +437,35 @@ public class PLPPageTest extends base {
         wait.until(ExpectedConditions.visibilityOf(pageElements.getSwagResultTxt()));
         System.out.println(pageElements.getSwagResultTxt().getText());
         Assert.assertTrue(pageElements.getSwagResultTxt().getText().contains(properties.getProperty("swagZipcode")));
+    }
+
+    //Verify SEARCH Function Displays Correct Products - assert ok
+    @Test(priority = 37, retryAnalyzer = Retry.class)
+    public void verifySearchFunctionDisplaysCorrectProducts() throws InterruptedException {
+        int matchingString = 0;
+        homePage.submitSwag(properties.getProperty("swagZipcode"), 2);
+        homePage.searchForInput(properties.getProperty("validSearchInput"));
+        wait.until(ExpectedConditions.presenceOfElementLocated(pageElements.swagResultsText));
+        if (pageElements.getAvailableProductList().size() > 0){
+            Thread.sleep(2000);
+            wait.until(ExpectedConditions.visibilityOfAllElements(pageElements.getAvailableProductList()));
+            for (int i = 0; i < pageElements.getAvailableProductList().size(); i++){
+                actions.moveToElement(pageElements.getAvailableProductList().get(i)).build().perform();
+                String searchInput = properties.getProperty("validSearchInput");
+                System.out.println(pageElements.getAvailableProductList().get(i).getText());
+                if (pageElements.getAvailableProductList().get(i).getText().contains(StringUtils.capitalize(searchInput))){
+                    matchingString++;
+                }
+            }
+            System.out.println("Test case = Find matching words in Search results = " + matchingString);
+            Assert.assertTrue(matchingString>0);
+        }
+    }
+
+    //Verify the user is able to switch from one PLP to another PLP
+    @Test(priority = 38, retryAnalyzer = Retry.class)
+    public void verifyPLPtoPLP(){
+
     }
 
     @AfterMethod

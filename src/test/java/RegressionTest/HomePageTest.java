@@ -210,7 +210,6 @@ public class HomePageTest extends base {
     // Verify SEARCH Function Displays Correct Products - assert ok
     @Test(priority = 14, retryAnalyzer = Retry.class)
     public void verifySearchFunctionDisplaysCorrectProducts() throws InterruptedException {
-        homePage.submitSwag(properties.getProperty("swagZipcode"), 2);
         homePage.searchForInput(properties.getProperty("validSearchInput"));
         wait.until(ExpectedConditions.presenceOfElementLocated(pageElements.swagResultsText));
         if (pageElements.getAvailableProductList().size() > 0){
@@ -280,10 +279,30 @@ public class HomePageTest extends base {
         System.out.println("Test case " );
     }
 
-    // Verify Broken links - assert ok
+    //Verify Broken links - assert ok
     @Test(priority = 21, retryAnalyzer = Retry.class)
     public void verifyBrokenLinks(){
         homePage.verifyNoBrokenLinks(currentURL);
+    }
+
+    //Verify User is able to Update Zip code after SWAG submited - assert ok
+    @Test(priority = 22, retryAnalyzer = Retry.class)
+    public void verifyUserCanUpdateZipCodeInCalendarAfterSwag() throws InterruptedException {
+        homePage.submitSwagWithoutEnteringDate(properties.getProperty("swagZipcode"));
+        homePage.submitSwagWithoutEnteringDate(properties.getProperty("updatedZipcode"));
+        Thread.sleep(4000);
+        System.out.println("Test case = Updating date in Home page after SWAG - " + homePage.swagResultsOnDateUpdateText+
+                "\n Updated date = "+ pageElements.getSwagResultTxt().getText());
+        Assert.assertNotEquals(homePage.swagResultsOnDateUpdateText,
+                pageElements.getSwagResultTxt().getText()); // Comparing the Updated date with 1st one
+    }
+
+    //Verify submitting SWAG with Empty Zipcode field will trigger error message - assert ok
+    @Test(priority = 23, retryAnalyzer = Retry.class)
+    public void verifyEmptyZipcodeErrorMessage(){
+        homePage.verifyInvalidZipcodeErrorMessage(" "); // verifying error message when SWAG submitted with different characters
+        System.out.println("Test case = Invalid zipcode Error - " + pageElements.getInvalidInputErrorInSWAG().getText());
+        Assert.assertTrue(pageElements.getInvalidInputErrorInSWAG().getText().contains("Enter a valid"));
     }
 
     @AfterMethod

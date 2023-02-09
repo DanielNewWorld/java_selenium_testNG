@@ -159,7 +159,6 @@ public class HomePage {
 
     // Update Date in Calendar after SWAG - ок
     public void updateDateInCalendarAfterSWAG(String zipCode7, int updateDatePickerIndex) throws InterruptedException{
-        //PageElements pageElementsHome7 = new PageElements(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         submitSwagWithoutEnteringDate(zipCode7); //Submitting SWAG with Default Date 1st
         Thread.sleep(4000);
