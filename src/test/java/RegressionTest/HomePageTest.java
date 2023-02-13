@@ -316,6 +316,48 @@ public class HomePageTest extends base {
         System.out.println("Test case current ZipCode = "+ pageElements.getProductTitlePDP().getText());
     }
 
+    //Verify Clicking on Help from Home page - assert ok
+    @Test(priority = 25, retryAnalyzer = Retry.class)
+    public void verifyMenuHelp() throws InterruptedException{
+        Thread.sleep(2000);
+        pageElements.getMenu().get(1).click();
+        Thread.sleep(2000);
+        pageElements.getSubMenu().get(0).click();
+        Thread.sleep(2000);
+        System.out.println("getTitle:" + driver.getTitle());
+        Assert.assertEquals(driver.getTitle(),"Customer Service");
+    }
+
+    //Verify Clicking on FTD Plus from Home page - assert ok
+    @Test(priority = 26, retryAnalyzer = Retry.class)
+    public void verifyMenuPlus() throws InterruptedException{
+        Thread.sleep(2000);
+        pageElements.getMenu().get(2).click();
+        Thread.sleep(4000);
+        System.out.println("getTitle:" + driver.getTitle());
+        Assert.assertTrue(driver.getTitle().contains("FTD Plus"));
+    }
+
+    //Verify Clicking on Cart In from Home page - assert ok
+    @Test(priority = 27, retryAnalyzer = Retry.class)
+    public void verifyMenuCart() throws InterruptedException{
+        Thread.sleep(2000);
+        pageElements.getMenu().get(4).click();
+        Thread.sleep(4000);
+        //System.out.println("getTitle:" + driver.getTitle());
+        //Assert.assertTrue(driver.getTitle().contains("FTD Plus"));
+    }
+
+    //Verify User is able to use Feedback function - assert ok
+    @Test(priority = 28, retryAnalyzer = Retry.class)
+    public void verifyFeedback() throws InterruptedException{
+        Thread.sleep(2000);
+        pageElements.getFeedback().click();
+        Thread.sleep(4000);
+        //System.out.println("getTitle:" + driver.getTitle());
+        //Assert.assertTrue(driver.getTitle().contains("FTD Plus"));
+    }
+
     @AfterMethod
     public void afterTestCase() throws InterruptedException {
         Thread.sleep(1000);

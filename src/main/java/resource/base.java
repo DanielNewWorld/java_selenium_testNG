@@ -27,7 +27,7 @@ public class base {
         FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\resources\\data.properties");
         properties.load(fileInputStream); // = properties.getProperty("browser");
         String browserName = System.getProperty("browser")!= null ? System.getProperty("browser") : properties.getProperty("browser");
-        currentURL = properties.getProperty("devFTD"); // uatFTD - UAT and prodPF - is PROD and prFTD for PR
+        currentURL = properties.getProperty("prodFTD"); // uatFTD - UAT and prodPF - is PROD and prFTD for PR
         System.out.println(browserName);
         switch (browserName) {
             case "chrome" -> {

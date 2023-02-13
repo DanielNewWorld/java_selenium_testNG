@@ -12,7 +12,7 @@ public class PageElements {
     By companyLogo = By.xpath("//div[contains(@class,'header_logo')]");
     By availableProductList = By.xpath("//span[contains(@aria-label,'Product Name') and contains(@class,'product-tile')]/a"); //ok
     By topMenuItems = By.xpath("//*[contains(@role, 'menuitem')]");  //ok
-    By topMenuSubLinks = By.xpath("//*[contains(@class, 'menu_panelList')]/li/a"); // ("//*[contains(@class, 'menu_panelList')]/li");
+    By topMenuSubLinks = By.xpath("//*[contains(@class, 'menu_panelList')]/li/a"); //ok
     By shopNowButton = By.xpath("//div[contains(@class, 'site-wide-available-gifts_buttonWrapper') or contains(@class, 'site-wide-available-gifts-test')]/button"); //ok
     By productPrices = By.xpath("//div[contains(@class,'a5fCG')]"); //ok
     By zipCode = By.xpath("//input[contains(@placeholder,'Delivery Address') or contains(@placeholder,'Zipcode') or contains(@id,'zipCode') or contains(@id,'address')]"); //ok
@@ -24,7 +24,8 @@ public class PageElements {
     By searchFromNav = By.xpath("//span[contains(@aria-label, 'Search') and @role='button']"); //ok
     By categoryLinksFromHomePage = By.xpath("//div[contains(@class,'item-stacked_descriptionBorder')]/a"); //ok
     public By footerSection = By.xpath("//section[contains(@class,'component footer')]"); //ok
-
+    By menu = By.xpath("//span[@role='button']"); //ok
+    By feedback = By.xpath("//button[contains(@class, 'oo_tab_right')]"); //ok
     // ********************************* PLP Page ***************************
     By forceSwagModel = By.xpath("//div[not(contains(@class, 'DeliveryDate')) and contains(@class, 'SwagModal')]");
     By forceSwagZipcode = By.xpath("//input[@id='zipCode-swag-modal']");
@@ -90,6 +91,9 @@ public class PageElements {
     By recaptchaUnCheckedBox = By.xpath("//span[contains(@class, 'recaptcha-checkbox') and @role='checkbox' and @aria-checked='false']"); //ok
     By recaptchaCheckedBox = By.xpath("//span[contains(@class, 'recaptcha-checkbox') and @role='checkbox' and @aria-checked='true']"); //ok
     By signInIntoAccountCTA = By.xpath("//button[contains(@class,'button_btn-primary') and @type='submit']"); //ok
+
+    //************************************** MENU HELP **********************************
+    By subMenuHelp = By.xpath("//div[contains(@class, 'help_container')]//a"); //ok
 
     public List<WebElement> getViewDetailsRecommendation(){ return driver.findElements(viewDetailsRecommendationCTA); }
     public List<WebElement> getRecommendationProducts(){ return driver.findElements(recommendationModelProducts); }
@@ -163,4 +167,7 @@ public class PageElements {
     public WebElement getSortMenuFeatured() {return driver.findElement(sortMenuFeatured);}
     public WebElement getSortMenuHiLo() {return driver.findElement(sortMenuHiLo);}
     public WebElement getSortMenuLoHi() {return driver.findElement(sortMenuLoHi);}
+    public List<WebElement> getMenu() {return driver.findElements(menu);}
+    public List<WebElement> getSubMenu() {return driver.findElements(subMenuHelp);}
+    public WebElement getFeedback() {return driver.findElement(feedback);}
 }
