@@ -358,6 +358,26 @@ public class HomePageTest extends base {
         //Assert.assertTrue(driver.getTitle().contains("FTD Plus"));
     }
 
+    //Verify Search by Popular links
+    @Test(priority = 29, retryAnalyzer = Retry.class)
+    public void verifySearchPopularLinks() throws InterruptedException {
+        int searchInput = 0;
+        homePage.searchPopularLinks(searchInput);
+        wait.until(ExpectedConditions.presenceOfElementLocated(pageElements.searchResultsText));
+        System.out.println("Test case = " + pageElements.getSearchResults().getText());
+        Assert.assertTrue(pageElements.getSearchResults().getText().contains( "Search Results for"));
+    }
+
+    //Verify Search by Color button
+    @Test(priority = 30, retryAnalyzer = Retry.class)
+    public void verifySearchColor() throws InterruptedException {
+        int searchInput = 9;
+        homePage.searchPopularLinks(searchInput);
+        wait.until(ExpectedConditions.presenceOfElementLocated(pageElements.searchResultsText));
+        System.out.println("Test case = " + pageElements.getSearchResults().getText());
+        Assert.assertTrue(pageElements.getSearchResults().getText().contains( "Search Results for"));
+    }
+
     @AfterMethod
     public void afterTestCase() throws InterruptedException {
         Thread.sleep(1000);

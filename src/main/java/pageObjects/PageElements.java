@@ -26,6 +26,8 @@ public class PageElements {
     public By footerSection = By.xpath("//section[contains(@class,'component footer')]"); //ok
     By menu = By.xpath("//span[@role='button']"); //ok
     By feedback = By.xpath("//button[contains(@class, 'oo_tab_right')]"); //ok
+    By searchPopularLinks = By.xpath("//div[contains(@class,'search-extras_li')]//a"); //ok
+    By itemProductCart = By.xpath("//span[contains(@class,'cart-item-count')]"); //ok
     // ********************************* PLP Page ***************************
     By forceSwagModel = By.xpath("//div[not(contains(@class, 'DeliveryDate')) and contains(@class, 'SwagModal')]");
     By forceSwagZipcode = By.xpath("//input[@id='zipCode-swag-modal']");
@@ -170,4 +172,6 @@ public class PageElements {
     public List<WebElement> getMenu() {return driver.findElements(menu);}
     public List<WebElement> getSubMenu() {return driver.findElements(subMenuHelp);}
     public WebElement getFeedback() {return driver.findElement(feedback);}
+    public List<WebElement> getSearchPopularLinks() {return driver.findElements(searchPopularLinks);}
+    public WebElement getItemProductCart() {return driver.findElement(itemProductCart);}
 }

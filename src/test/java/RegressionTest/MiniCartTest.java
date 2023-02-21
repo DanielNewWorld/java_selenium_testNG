@@ -42,11 +42,11 @@ public class MiniCartTest extends base {
         myAccountPages = new MyAccountPages(driver);
         jseProdTest = (JavascriptExecutor) driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        DevTools devTools = ((ChromeDriver)driver).getDevTools();
-        devTools.createSession();
-        devTools.send(Network.enable(java.util.Optional.empty(),
-                java.util.Optional.empty(), Optional.empty()));
-        devTools.send(Network.setBlockedURLs(List.of("https://tag.wknd.ai/4949/i.js", "https://tag.wknd.ai/4951/i.js")));
+        //DevTools devTools = ((ChromeDriver)driver).getDevTools();
+        //devTools.createSession();
+        //devTools.send(Network.enable(java.util.Optional.empty(),
+        //        java.util.Optional.empty(), Optional.empty()));
+        //devTools.send(Network.setBlockedURLs(List.of("https://tag.wknd.ai/4949/i.js", "https://tag.wknd.ai/4951/i.js")));
         driver.get(currentURL);
         Thread.sleep(2000);
     }
@@ -145,6 +145,17 @@ public class MiniCartTest extends base {
         miniCart.editZipCodeFromMiniCart(properties.getProperty("swagZipcode"), properties.getProperty("updatedZipcode")); // Update Zipcode
         System.out.println("Test case 2nd Current Zipcode = "+currentZipCodeInPDP+ " updated date = "+ pageElements.getPDPdeliveryDetails().getText());
         Assert.assertNotEquals(currentZipCodeInPDP, pageElements.getPDPdeliveryDetails().getText());
+    }
+
+    //Verify Cart reminder on the Home page when there is an item in the cart
+    @Test(priority = 8, retryAnalyzer = Retry.class)
+    public void verifyItemProductFromMiniCart() throws InterruptedException {
+        homePage.submitSwag(properties.getProperty("swagZipcode"), 1); // Submitting SWAG
+        Thread.sleep(1000);
+        wait.until(ExpectedConditions.visibilityOf(pageElements.getProductPricesPLP().get(0)));
+        plpPage.selectProductFromPLP(0); // Selecting item From PLP
+        pDpPage.addProductToCartAfterSWAG(); // Adding Product to Cart
+        miniCart.verifyItemProductCart();
     }
 
     @AfterMethod

@@ -186,4 +186,9 @@ public class MiniCart{
         wait.until(ExpectedConditions.visibilityOf(pageElementsMiniCart5.getPDPdeliveryDetails()));
     }
 
+    public void verifyItemProductCart() throws InterruptedException {
+        PageElements pageElementsCart = new PageElements(driver);
+        System.out.println("Item product cart = " + pageElementsCart.getItemProductCart().getText());
+    }
+
 }

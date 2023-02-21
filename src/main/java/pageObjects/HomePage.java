@@ -48,6 +48,7 @@ public class HomePage {
                          pageElementsHome1.getAvailableDatesFromSWAG().get(datePickerIndex-1));
              }
          }
+        Thread.sleep(2000);
          wait.until(ExpectedConditions.elementToBeClickable(pageElementsHome1.getShopNowCTA()));
          try {
              pageElementsHome1.getShopNowCTA().click();
@@ -376,5 +377,15 @@ public class HomePage {
                 e.printStackTrace();
             }
         }
+    }
+
+    //Verify Search by Popular links - ok
+    public void searchPopularLinks(int searchLinks) throws InterruptedException {
+        PageElements pageElementsHome9 = new PageElements(driver);
+        wait.until(ExpectedConditions.elementToBeClickable(pageElementsHome9.getSearchFromNav())); // wait to Click Search from Menu item
+        pageElementsHome9.getSearchFromNav().click();
+        Thread.sleep(3000);
+        wait.until(ExpectedConditions.elementToBeClickable(pageElementsHome9.getSearchPopularLinks().get(searchLinks)));
+        pageElementsHome9.getSearchPopularLinks().get(searchLinks).click();
     }
 }
